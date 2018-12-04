@@ -24,29 +24,31 @@ import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 public class ElectricityActivity extends AppCompatActivity {
-    Switch Switch1;
-    String requestUrl = "http://192.168.1.48";
+    Switch Switch1, Switch2;
+    String requestUrl = "http://192.168.1.60";
+    int refresh_temp = 1;
+    String[] refresh_name = {"/RL1", "/RL2"};
+    Switch[] refresh_switch = new Switch[2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_electricity);
         Switch1 = (Switch) findViewById(R.id.switch1);
-        //Switch2 = (Switch) findViewById(R.id.simpleSwitch2);
+        Switch2 = (Switch) findViewById(R.id.switch2);
+        refresh_switch[0] = Switch1;
+        refresh_switch[1] = Switch2;
 
         Switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    // final RequestQueue queue = Volley.newRequestQueue(this);
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/on",
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/K_on",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
-                                    //TextView resp = findViewById(R.id.Login_opis);
-                                    //resp.setText(response);
                                     Log.d(response, "resp");
-                                    Toast.makeText(getApplicationContext(), "ON", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "ON", Toast.LENGTH_SHORT).show();
                                 }
                             }, new Response.ErrorListener() {
                         @Override
@@ -56,17 +58,52 @@ public class ElectricityActivity extends AppCompatActivity {
                     });
                     //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
-
-
                 } else {
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/off",
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/K_off",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
-                                    //TextView resp = findViewById(R.id.Login_opis);
-                                    //resp.setText(response);
                                     Log.d(response, "resp");
-                                    Toast.makeText(getApplicationContext(), "OFF", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "OFF", Toast.LENGTH_SHORT).show();
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d(error.toString(), "blad");
+                        }
+                    });
+                    //queue.add(stringRequest);
+                    MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
+                }
+            }
+        });
+
+        Switch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/H_on",
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Log.d(response, "resp");
+                                    Toast.makeText(getApplicationContext(), "ON", Toast.LENGTH_SHORT).show();
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d(error.toString(), "blad");
+                        }
+                    });
+                    //queue.add(stringRequest);
+                    MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
+                } else {
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/H_off",
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Log.d(response, "resp");
+                                    Toast.makeText(getApplicationContext(), "OFF", Toast.LENGTH_SHORT).show();
                                 }
                             }, new Response.ErrorListener() {
                         @Override
@@ -82,19 +119,20 @@ public class ElectricityActivity extends AppCompatActivity {
 
     }
     public void refresh(View view){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/ene",
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/RL1",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d(response, "resp");
-                        System.out.println(response.getClass().getName());
-                        if(response.equals("ON")){
+                        if(response.equals("1")){
                             Switch1.setChecked(TRUE);
+                            //Switch1.setChecked(TRUE);
                         }
-                        else if(response.equals("OFF")){
+                        else if(response.equals("0")){
                             Switch1.setChecked(FALSE);
                         }
-                        Toast.makeText(getApplicationContext(), "Odświeżono", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "Odświeżono", Toast.LENGTH_SHORT).show();
 
                     }
                 }, new Response.ErrorListener() {
@@ -105,6 +143,30 @@ public class ElectricityActivity extends AppCompatActivity {
         });
         //queue.add(stringRequest);
         MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
-    }
-}
+
+        StringRequest stringRequest1 = new StringRequest(Request.Method.GET, requestUrl + "/RL2",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(response, "resp");
+                        if(response.equals("1")){
+                            Switch2.setChecked(TRUE);
+                            //Switch1.setChecked(TRUE);
+                        }
+                        else if(response.equals("0")){
+                            Switch2.setChecked(FALSE);
+                        }
+                        //Toast.makeText(getApplicationContext(), "Odświeżono", Toast.LENGTH_SHORT).show();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(error.toString(), "blad");
+            }
+        });
+        //queue.add(stringRequest);
+        MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest1);
+    }}
+
 

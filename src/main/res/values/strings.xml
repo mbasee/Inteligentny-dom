@@ -13,4 +13,6 @@
     <string name="Button_elect">Energia</string>
     <string name="Button_secur">Alarm</string>
     <string name="L_Kitchen">Lampa - kuchnia</string>
+    <string name="L_Hall">Lampa - hol</string>
+    <string name="Refresh">Odśwież</string>
 </resources>
