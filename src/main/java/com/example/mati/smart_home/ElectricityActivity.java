@@ -25,7 +25,7 @@ import static java.lang.Boolean.TRUE;
 
 public class ElectricityActivity extends AppCompatActivity {
     Switch Switch1, Switch2;
-    String requestUrl = "http://192.168.1.60";
+    public String requestUrl = "http://192.168.1.60";
     int refresh_temp = 1;
     String[] refresh_name = {"/RL1", "/RL2"};
     Switch[] refresh_switch = new Switch[2];
@@ -54,6 +54,12 @@ public class ElectricityActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.d(error.toString(), "blad");
+                            Switch1.setChecked(FALSE);
+                            MySingleton.getInstance(ElectricityActivity.this).getRequestQueue().cancelAll(new RequestQueue.RequestFilter() {
+                                @Override
+                                public boolean apply(Request<?> request) {
+                                    return true;
+                                }});
                         }
                     });
                     //queue.add(stringRequest);
@@ -70,6 +76,13 @@ public class ElectricityActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.d(error.toString(), "blad");
+                            Switch1.setChecked(TRUE);
+                            MySingleton.getInstance(ElectricityActivity.this).getRequestQueue().cancelAll(new RequestQueue.RequestFilter() {
+                                @Override
+                                public boolean apply(Request<?> request) {
+                                    return true;
+                                }});
+
                         }
                     });
                     //queue.add(stringRequest);
@@ -93,6 +106,12 @@ public class ElectricityActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.d(error.toString(), "blad");
+                            Switch2.setChecked(FALSE);
+                            MySingleton.getInstance(ElectricityActivity.this).getRequestQueue().cancelAll(new RequestQueue.RequestFilter() {
+                                @Override
+                                public boolean apply(Request<?> request) {
+                                    return true;
+                                }});
                         }
                     });
                     //queue.add(stringRequest);
@@ -109,6 +128,12 @@ public class ElectricityActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.d(error.toString(), "blad");
+                            Switch2.setChecked(TRUE);
+                            MySingleton.getInstance(ElectricityActivity.this).getRequestQueue().cancelAll(new RequestQueue.RequestFilter() {
+                                @Override
+                                public boolean apply(Request<?> request) {
+                                    return true;
+                                }});
                         }
                     });
                     //queue.add(stringRequest);
