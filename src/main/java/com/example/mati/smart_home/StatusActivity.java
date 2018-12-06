@@ -1,5 +1,6 @@
 package com.example.mati.smart_home;
 
+import android.graphics.Color;
 import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,29 +41,33 @@ public class StatusActivity extends AppCompatActivity {
 
                                 if(response3.length()==6 && response3.endsWith(" ")){
                                 temp.setText("");
-                                temp.setText("Temperatura: " + response3.substring(0,2) + " °C");
+                                temp.setText("Temperatura: " + response3.substring(0,2));
                                 mois.setText("");
-                                mois.setText("Wilgotność: " + response3.substring(2,4)+ " %");
+                                mois.setText("Wilgotność: " + response3.substring(2,4));
                                     if(response3.substring(4,5).equals("1")){
                                         resp.setText("");
+                                        resp.setTextColor(Color.parseColor("#00a000"));
                                         resp.setText("Status obiektu: Zabezpieczony");
                                     }
                                     else{
                                         resp.setText("");
+                                        resp.setTextColor(Color.parseColor("#ff0d1d"));
                                         resp.setText("Status obiektu: Odbezpieczony");
                                     }
                                 }
                                 else if(response3.length()==5 && response3.endsWith(" ")){
                                     temp.setText("");
-                                    temp.setText("Temperatura: " + response3.substring(0,1) + " °C");
+                                    temp.setText("Temperatura: " + response3.substring(0,1));
                                     mois.setText("");
-                                    mois.setText("Wilgotność: " + response3.substring(1,3) + " %");
+                                    mois.setText("Wilgotność: " + response3.substring(1,3));
                                     if(response3.substring(3,4).equals("1")){
                                         resp.setText("");
+                                        resp.setTextColor(Color.parseColor("#00a000"));
                                         resp.setText("Status obiektu: Zabezpieczony");
                                     }
                                     else{
                                         resp.setText("");
+                                        resp.setTextColor(Color.parseColor("#ff0d1d"));
                                         resp.setText("Status obiektu: Odbezpieczony");
                                     }
                                 }
@@ -73,18 +78,20 @@ public class StatusActivity extends AppCompatActivity {
                                     mois.setText("Wilgotność: " + response3.substring(2,4));
                                     if(response3.substring(4,5).equals("1")){
                                         resp.setText("");
+                                        resp.setTextColor(Color.parseColor("#00a000"));
                                         resp.setText("Status obiektu: Zabezpieczony");
                                     }
                                     else{
                                         resp.setText("");
+                                        resp.setTextColor(Color.parseColor("#ff0d1d"));
                                         resp.setText("Status obiektu: Odbezpieczony");
                                     }
                                 }
                                 else{
                                     temp.setText("");
-                                    temp.setText("Temperatura: " + response3.substring(0,1) + " °C");
+                                    temp.setText("Temperatura: " + response3.substring(0,1));
                                     mois.setText("");
-                                    mois.setText("Wilgotność: " + response3.substring(1,3) + " %");
+                                    mois.setText("Wilgotność: " + response3.substring(1,3));
                                     if(response3.substring(3,4).equals("1")){
                                         resp.setText("");
                                         resp.setText("Status obiektu: Zabezpieczony");
