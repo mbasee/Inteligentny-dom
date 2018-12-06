@@ -33,44 +33,67 @@ public class StatusActivity extends AppCompatActivity {
 
             public void run() {
 
-                /*StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/stat",
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response1) {
-                                resp.setText("");
-                                resp.setText("Status obiektu: " + response1);
-                                Log.d(response1, "respw");
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(error.toString(), "blad");
-                    }
-                });
-                MySingleton.getInstance(StatusActivity.this).addToRequestQueue(stringRequest);
-
-                StringRequest stringRequest_temp = new StringRequest(Request.Method.GET, requestUrl + "/temp",
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response2) {
-                                temp.setText("");
-                                temp.setText("Temperatura: " + response2);
-                                Log.d(response2, "respe");
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(error.toString(), "blad");
-                    }
-                });
-                MySingleton.getInstance(StatusActivity.this).addToRequestQueue(stringRequest_temp);
-*/
                 StringRequest stringRequest_mois = new StringRequest(Request.Method.GET, requestUrl + "/mois",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response3) {
+
+                                if(response3.length()==6 && response3.endsWith(" ")){
+                                temp.setText("");
+                                temp.setText("Temperatura: " + response3.substring(0,2) + " °C");
                                 mois.setText("");
-                                mois.setText("Wilgotność: " + response3);
+                                mois.setText("Wilgotność: " + response3.substring(2,4)+ " %");
+                                    if(response3.substring(4,5).equals("1")){
+                                        resp.setText("");
+                                        resp.setText("Status obiektu: Zabezpieczony");
+                                    }
+                                    else{
+                                        resp.setText("");
+                                        resp.setText("Status obiektu: Odbezpieczony");
+                                    }
+                                }
+                                else if(response3.length()==5 && response3.endsWith(" ")){
+                                    temp.setText("");
+                                    temp.setText("Temperatura: " + response3.substring(0,1) + " °C");
+                                    mois.setText("");
+                                    mois.setText("Wilgotność: " + response3.substring(1,3) + " %");
+                                    if(response3.substring(3,4).equals("1")){
+                                        resp.setText("");
+                                        resp.setText("Status obiektu: Zabezpieczony");
+                                    }
+                                    else{
+                                        resp.setText("");
+                                        resp.setText("Status obiektu: Odbezpieczony");
+                                    }
+                                }
+                                else if(response3.length()==5 && !response3.endsWith(" ")){
+                                    temp.setText("");
+                                    temp.setText("Temperatura: " + response3.substring(0,2));
+                                    mois.setText("");
+                                    mois.setText("Wilgotność: " + response3.substring(2,4));
+                                    if(response3.substring(4,5).equals("1")){
+                                        resp.setText("");
+                                        resp.setText("Status obiektu: Zabezpieczony");
+                                    }
+                                    else{
+                                        resp.setText("");
+                                        resp.setText("Status obiektu: Odbezpieczony");
+                                    }
+                                }
+                                else{
+                                    temp.setText("");
+                                    temp.setText("Temperatura: " + response3.substring(0,1) + " °C");
+                                    mois.setText("");
+                                    mois.setText("Wilgotność: " + response3.substring(1,3) + " %");
+                                    if(response3.substring(3,4).equals("1")){
+                                        resp.setText("");
+                                        resp.setText("Status obiektu: Zabezpieczony");
+                                    }
+                                    else{
+                                        resp.setText("");
+                                        resp.setText("Status obiektu: Odbezpieczony");
+                                    }
+                                }
                                 Log.d(response3, "respr");
                             }
                         }, new Response.ErrorListener() {
@@ -80,15 +103,6 @@ public class StatusActivity extends AppCompatActivity {
                     }
                 });
                 MySingleton.getInstance(StatusActivity.this).addToRequestQueue(stringRequest_mois);
-               /* if(mois.getText().equals(" ")){
-                    MySingleton.getInstance(StatusActivity.this).addToRequestQueue(stringRequest_mois);
-                }*/
-               /* if(temp.getText().equals(" ")){
-                    MySingleton.getInstance(StatusActivity.this).addToRequestQueue(stringRequest_temp);
-                }
-                if(resp.getText().equals(" ")){
-                    MySingleton.getInstance(StatusActivity.this).addToRequestQueue(stringRequest);
-                }*/
             }
         }).start();
     }
