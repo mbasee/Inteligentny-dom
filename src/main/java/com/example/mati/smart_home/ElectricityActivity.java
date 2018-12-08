@@ -38,6 +38,34 @@ public class ElectricityActivity extends AppCompatActivity {
         Switch2 = (Switch) findViewById(R.id.switch2);
         refresh_switch[0] = Switch1;
         refresh_switch[1] = Switch2;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/eler",
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Log.d(response, "resp");
+                                if (response.substring(0, 1).equals("1")) {
+                                    Switch1.setChecked(TRUE);
+                                } else if (response.substring(0, 1).equals("0")) {
+                                    Switch1.setChecked(FALSE);
+                                }
+                                if (response.substring(1, 2).equals("1")) {
+                                    Switch2.setChecked(TRUE);
+                                } else if (response.substring(1, 2).equals("0")) {
+                                    Switch2.setChecked(FALSE);
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Błąd komunikacji", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
+            }
+        }).start();
 
         Switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -144,8 +172,31 @@ public class ElectricityActivity extends AppCompatActivity {
 
     }
     public void refresh(View view){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/eler",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(response, "resp");
+                        if (response.substring(0, 1).equals("1")) {
+                            Switch1.setChecked(TRUE);
+                        } else if (response.substring(0, 1).equals("0")) {
+                            Switch1.setChecked(FALSE);
+                        }
+                        if (response.substring(1, 2).equals("1")) {
+                            Switch2.setChecked(TRUE);
+                        } else if (response.substring(1, 2).equals("0")) {
+                            Switch2.setChecked(FALSE);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Błąd komunikacji", Toast.LENGTH_SHORT).show();
+            }
+        });
+        MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
 
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/RL1",
+           /* StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/RL1",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -192,6 +243,7 @@ public class ElectricityActivity extends AppCompatActivity {
         });
         //queue.add(stringRequest);
         MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest1);
-    }}
-
+    */
+    }
+    }
 
