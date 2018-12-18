@@ -25,5 +25,6 @@ public class HouseActivity extends AppCompatActivity {
     public void przejscie_alarm(View view){
         Intent i = new Intent(this,SecurityActivity.class);
         startActivity(i);
+        //finish();
     }
 }
