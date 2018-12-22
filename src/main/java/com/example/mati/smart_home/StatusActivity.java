@@ -9,11 +9,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.lang.Boolean.TRUE;
 
@@ -29,6 +33,7 @@ public class StatusActivity extends AppCompatActivity {
         final TextView resp = findViewById(R.id.Object_status);
         final TextView temp = findViewById(R.id.Temperature_header);
         final TextView mois = findViewById(R.id.Moisture);
+
         tStat = new Thread() {
             public void run() {
                 while (!isInterrupted()) {
@@ -114,7 +119,8 @@ public class StatusActivity extends AppCompatActivity {
                                     public void onErrorResponse(VolleyError error) {
                                         Toast.makeText(getApplicationContext(), "Błąd komunikacji", Toast.LENGTH_SHORT).show();
                                     }
-                                });
+                                })
+                                ;
                                 MySingleton.getInstance(StatusActivity.this).addToRequestQueue(stringRequest);
                             }
                         });
