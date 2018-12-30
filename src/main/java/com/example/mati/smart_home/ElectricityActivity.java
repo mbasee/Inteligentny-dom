@@ -25,7 +25,7 @@ import static java.lang.Boolean.TRUE;
 
 public class ElectricityActivity extends AppCompatActivity {
     Switch Switch1, Switch2, Switch3, Switch4;
-    public String requestUrl = "http://192.168.1.60";
+    //public String requestUrl = "http://192.168.1.60";
     int refresh_temp = 1;
     String[] refresh_name = {"/RL1", "/RL2"};
     Switch[] refresh_switch = new Switch[2];
@@ -43,7 +43,7 @@ public class ElectricityActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/eler",
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/eler",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -83,7 +83,7 @@ public class ElectricityActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/K_on",
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/K_on",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -105,7 +105,7 @@ public class ElectricityActivity extends AppCompatActivity {
                     //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 } else {
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/K_off",
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/K_off",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -135,7 +135,7 @@ public class ElectricityActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/H_on",
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/H_on",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -157,7 +157,7 @@ public class ElectricityActivity extends AppCompatActivity {
                     //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 } else {
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/H_off",
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/H_off",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -186,7 +186,7 @@ public class ElectricityActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/GK_on",
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/GK_on",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -208,7 +208,7 @@ public class ElectricityActivity extends AppCompatActivity {
                     //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 } else {
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/GK_off",
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/GK_off",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -237,7 +237,7 @@ public class ElectricityActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/GH_on",
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/GH_on",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -259,7 +259,7 @@ public class ElectricityActivity extends AppCompatActivity {
                     //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 } else {
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/GH_off",
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/GH_off",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -287,7 +287,7 @@ public class ElectricityActivity extends AppCompatActivity {
 
     }
     public void refresh(View view){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/eler",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/eler",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

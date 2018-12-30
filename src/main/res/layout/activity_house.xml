@@ -45,7 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Status_button" />
 
-    <Button
+ <!--   <Button
         android:id="@+id/Security_button"
         style="@android:style/Widget.Button.Inset"
         android:layout_width="wrap_content"
@@ -72,7 +72,36 @@
         android:layout_marginRight="20dp"
         app:layout_constraintEnd_toStartOf="@+id/Security_button"
         app:layout_constraintTop_toBottomOf="@+id/Electricity_button"
-        app:srcCompat="@drawable/sec" />
+        app:srcCompat="@drawable/sec" /> -->
+
+    <Button
+        android:id="@+id/Edite_button"
+        style="@android:style/Widget.Button.Inset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="przejscie_opcje"
+        android:text="@string/Options"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Electricity_button" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/Edite_button"
+        app:layout_constraintTop_toBottomOf="@+id/Electricity_button"
+        app:srcCompat="@drawable/ust" />
 
     <ImageView
         android:id="@+id/imageView2"

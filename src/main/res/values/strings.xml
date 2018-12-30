@@ -17,4 +17,6 @@
     <string name="Refresh">Odśwież</string>
     <string name="Socket_Kitchen">Gniazdko - kuchnia</string>
     <string name="Socket_Hall">Gniazdko - hol</string>
+    <string name="Options">Ustawienia</string>
+    <string name="Save">Zapisz</string>
 </resources>

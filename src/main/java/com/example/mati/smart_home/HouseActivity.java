@@ -22,7 +22,12 @@ import com.android.volley.toolbox.StringRequest;
 public class HouseActivity extends AppCompatActivity {
     Thread tStat;
     private boolean runT = true;
-    String requestUrl = "http://192.168.1.60";
+    public static String requestUrl = "http://192.168.1.60";
+
+    //static {
+     //   requestUrl = "http://192.168.1.60";
+    //}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,8 +113,9 @@ public class HouseActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void przejscie_alarm(View view){
-        Intent i = new Intent(this,SecurityActivity.class);
+    public void przejscie_opcje(View view){
+        Intent i = new Intent(this,OptionsActivity.class);
+        runT = false;
         startActivity(i);
         //finish();
     }

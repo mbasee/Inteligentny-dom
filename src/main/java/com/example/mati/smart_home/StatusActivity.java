@@ -20,9 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static java.lang.Boolean.TRUE;
-
 public class StatusActivity extends AppCompatActivity {
-    String requestUrl = "http://192.168.1.60";
+    //String requestUrl = "http://192.168.1.60";
     Thread tStat;
     private boolean runT = true;
 
@@ -45,7 +44,7 @@ public class StatusActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl + "/mois",
+                                StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/mois",
                                         new Response.Listener<String>() {
                                             @Override
                                             public void onResponse(String response3) {
