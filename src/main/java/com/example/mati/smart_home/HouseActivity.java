@@ -59,7 +59,7 @@ public class HouseActivity extends AppCompatActivity {
                                         }, new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(getApplicationContext(), "Błąd komunikacji", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(getApplicationContext(), "Błąd komunikacji", Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                         ;
@@ -115,7 +115,7 @@ public class HouseActivity extends AppCompatActivity {
 
     public void przejscie_opcje(View view){
         Intent i = new Intent(this,OptionsActivity.class);
-        runT = false;
+        //runT = false;
         startActivity(i);
         //finish();
     }

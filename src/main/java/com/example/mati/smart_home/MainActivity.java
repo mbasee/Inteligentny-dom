@@ -27,9 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void przejscie_info(View view) {
-        //Uri uri = Uri.parse("http://google.pl");
-        //Intent i = new Intent(Intent.ACTION_VIEW,uri);
-        //Intent i = new Intent(this,InfoActivity.class);
-        //startActivity(i);
+        Intent i = new Intent(this,InfoActivity.class);
+        startActivity(i);
     }
 }

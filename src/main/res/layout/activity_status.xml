@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6c5e5b"
+    android:background="#a99e9c"
     tools:context=".StatusActivity">
 
     <TextView
@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Temperature_header" />
 
-    <Button
+   <!-- <Button
         android:id="@+id/refr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Moisture" />
+        app:layout_constraintTop_toBottomOf="@+id/Moisture" /> -->
 
     <TextView
         android:id="@+id/textView"

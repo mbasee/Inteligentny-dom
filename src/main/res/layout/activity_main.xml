@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#a99e9c"
     tools:context=".MainActivity">
 
 
@@ -18,6 +19,8 @@
         android:layout_marginEnd="8dp"
         android:onClick="przejscie_zaloguj"
         android:text="@string/Zaloguj"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +35,8 @@
         android:layout_marginEnd="8dp"
         android:onClick="przejscie_info"
         android:text="@string/Info"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Zaloguj" />

@@ -3,32 +3,22 @@ package com.example.mati.smart_home;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 public class ElectricityActivity extends AppCompatActivity {
     Switch Switch1, Switch2, Switch3, Switch4;
-    //public String requestUrl = "http://192.168.1.60";
-    int refresh_temp = 1;
-    String[] refresh_name = {"/RL1", "/RL2"};
-    Switch[] refresh_switch = new Switch[2];
+   // int refresh_temp = 1;
+    //String[] refresh_name = {"/RL1", "/RL2"};
+    //Switch[] refresh_switch = new Switch[2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +28,8 @@ public class ElectricityActivity extends AppCompatActivity {
         Switch2 = (Switch) findViewById(R.id.switch2);
         Switch3 = (Switch) findViewById(R.id.switch3);
         Switch4 = (Switch) findViewById(R.id.switch4);
-        refresh_switch[0] = Switch1;
-        refresh_switch[1] = Switch2;
+        //refresh_switch[0] = Switch1;
+        //refresh_switch[1] = Switch2;
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -102,7 +92,6 @@ public class ElectricityActivity extends AppCompatActivity {
                                 }});
                         }
                     });
-                    //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 } else {
                     StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/K_off",
@@ -125,7 +114,6 @@ public class ElectricityActivity extends AppCompatActivity {
 
                         }
                     });
-                    //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 }
             }
@@ -154,7 +142,6 @@ public class ElectricityActivity extends AppCompatActivity {
                                 }});
                         }
                     });
-                    //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 } else {
                     StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/H_off",
@@ -176,7 +163,6 @@ public class ElectricityActivity extends AppCompatActivity {
                                 }});
                         }
                     });
-                    //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 }
             }
@@ -205,7 +191,6 @@ public class ElectricityActivity extends AppCompatActivity {
                                 }});
                         }
                     });
-                    //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 } else {
                     StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/GK_off",
@@ -227,7 +212,6 @@ public class ElectricityActivity extends AppCompatActivity {
                                 }});
                         }
                     });
-                    //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 }
             }
@@ -256,7 +240,6 @@ public class ElectricityActivity extends AppCompatActivity {
                                 }});
                         }
                     });
-                    //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 } else {
                     StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/GH_off",
@@ -278,7 +261,6 @@ public class ElectricityActivity extends AppCompatActivity {
                                 }});
                         }
                     });
-                    //queue.add(stringRequest);
                     MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest);
                 }
             }
@@ -286,7 +268,7 @@ public class ElectricityActivity extends AppCompatActivity {
 
 
     }
-    public void refresh(View view){
+   /* public void refresh(View view){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, HouseActivity.requestUrl + "/eler",
                 new Response.Listener<String>() {
                     @Override
@@ -359,6 +341,6 @@ public class ElectricityActivity extends AppCompatActivity {
         //queue.add(stringRequest);
         MySingleton.getInstance(ElectricityActivity.this).addToRequestQueue(stringRequest1);
     */
-    }
+    //}
     }
 
