@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    String requestUrl = "http://192.168.1.48/haslo";
+    String requestUrl = "https://serwer1952434.home.pl/login.php";
     String loginn, passwordd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         EditText password = findViewById(R.id.Password);
         loginn = login.getText().toString();
         passwordd = password.getText().toString();
+        Log.d(loginn,"login");
+        Log.d(passwordd,"pass");
 
         if(loginn.equals("") || passwordd.equals("")){
             Toast.makeText(getApplicationContext(), "Popraw dane", Toast.LENGTH_SHORT).show();
@@ -43,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         else {
             //final RequestQueue queue = Volley.newRequestQueue(this);
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, requestUrl,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -58,19 +60,19 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }) {
                 @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
+                protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
-                    params.put("username", "loginn");
-                    params.put("password", "passwordd");
+                    params.put("username", loginn);
+                    params.put("password", passwordd);
                     return params;
                 }
             };
             //queue.add(stringRequest);
             MySingleton.getInstance(LoginActivity.this).addToRequestQueue(stringRequest);
         }
-        Intent i = new Intent(this,HouseActivity.class);
-        startActivity(i);
-        finish();
+        //Intent i = new Intent(this,HouseActivity.class);
+        //startActivity(i);
+        //finish();
     }
 
 }
