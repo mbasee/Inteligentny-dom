@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -22,7 +23,7 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     String requestUrl = "http://192.168.1.48/haslo";
-
+    String loginn, passwordd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,35 +33,41 @@ public class LoginActivity extends AppCompatActivity {
         //sprawdzenie poprawnosci logowania
         EditText login = findViewById(R.id.Login);
         EditText password = findViewById(R.id.Password);
-        //Intent i = new Intent(this,HouseActivity.class);
-        //startActivity(i);
-        //finish();
-        final RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        TextView resp = findViewById(R.id.Login_opis);
-                        resp.setText(response);
-                        Log.d(response, "resp");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d(error.toString(), "blad");
-            }
-        })
-        {
-        @Override
-        protected Map<String, String> getParams () throws AuthFailureError {
-            Map<String, String> params = new HashMap<>();
-            params.put("oauth", "jsH");
-            return params;
-        }
-    };
-        //queue.add(stringRequest);
-        MySingleton.getInstance(LoginActivity.this).addToRequestQueue(stringRequest);
+        loginn = login.getText().toString();
+        passwordd = password.getText().toString();
 
+        if(loginn.equals("") || passwordd.equals("")){
+            Toast.makeText(getApplicationContext(), "Popraw dane", Toast.LENGTH_SHORT).show();
+            login.setText("");
+            password.setText("");
+        }
+        else {
+            //final RequestQueue queue = Volley.newRequestQueue(this);
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, requestUrl,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            TextView resp = findViewById(R.id.Login_opis);
+                            resp.setText(response);
+                            Log.d(response, "resp");
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d(error.toString(), "blad");
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("username", "loginn");
+                    params.put("password", "passwordd");
+                    return params;
+                }
+            };
+            //queue.add(stringRequest);
+            MySingleton.getInstance(LoginActivity.this).addToRequestQueue(stringRequest);
+        }
         Intent i = new Intent(this,HouseActivity.class);
         startActivity(i);
         finish();

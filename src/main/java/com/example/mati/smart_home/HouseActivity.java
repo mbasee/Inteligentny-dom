@@ -73,6 +73,7 @@ public class HouseActivity extends AppCompatActivity {
             }
         };
         tStat.start();
+
     }
     //public void onBackPressed(){
 
@@ -119,4 +120,8 @@ public class HouseActivity extends AppCompatActivity {
         startActivity(i);
         //finish();
     }
+    /*protected void onResume() {
+        super.onResume();
+        Log.d("Activity lifecycle","onREsume");
+    } */
 }

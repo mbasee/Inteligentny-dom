@@ -5,8 +5,8 @@
         których będziesz mógł sterować oświetleniem, monitorować dane dotyczące obiektu, oraz zmienić ustawienia sieciowe.
     \n\nMiłego użytkowania!</string>
     <string name="Info">Informacje</string>
-    <string name="Login">Login</string>
-    <string name="Password">Hasło</string>
+    <string name="Login"></string>
+    <string name="Password"></string>
     <string name="Login_header">Wprowadź login:</string>
     <string name="Password_header">Wprowadź hasło:</string>
     <string name="Temperature_head">Temperatura:</string>
