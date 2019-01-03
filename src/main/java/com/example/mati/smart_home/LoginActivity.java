@@ -24,10 +24,12 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
     String requestUrl = "https://serwer1952434.home.pl/login.php";
     String loginn, passwordd;
+    public static int temp, status = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
     }
     public void przejscie_loguj(View view) {
         //sprawdzenie poprawnosci logowania
@@ -42,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Popraw dane", Toast.LENGTH_SHORT).show();
             login.setText("");
             password.setText("");
+            temp = 1;
         }
         else {
             //final RequestQueue queue = Volley.newRequestQueue(this);
@@ -52,6 +55,17 @@ public class LoginActivity extends AppCompatActivity {
                             TextView resp = findViewById(R.id.Login_opis);
                             resp.setText(response);
                             Log.d(response, "resp");
+                            if(response.equalsIgnoreCase("failed")){
+                                Toast.makeText(getApplicationContext(), "Błędne dane", Toast.LENGTH_SHORT).show();
+                                temp = 1;
+                                status = 1;
+                            }
+                            else{
+                                HouseActivity.requestUrl = "http://"+response;
+                                temp = 0;
+                                status = 0;
+                                HouseActivity.runT = true;
+                            }
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -67,12 +81,18 @@ public class LoginActivity extends AppCompatActivity {
                     return params;
                 }
             };
-            //queue.add(stringRequest);
             MySingleton.getInstance(LoginActivity.this).addToRequestQueue(stringRequest);
         }
-        //Intent i = new Intent(this,HouseActivity.class);
-        //startActivity(i);
-        //finish();
+        if(temp == 0) {
+            Intent i = new Intent(this,HouseActivity.class);
+            startActivity(i);
+            finish();
+        }
     }
-
+    public void onBackPressed(){
+        //status = 0;
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

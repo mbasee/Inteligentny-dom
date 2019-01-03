@@ -21,7 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 
 public class HouseActivity extends AppCompatActivity {
     Thread tStat;
-    private boolean runT = true;
+    public static boolean runT = true;
     public static String requestUrl = "http://192.168.1.60";
 
     //static {
@@ -119,6 +119,12 @@ public class HouseActivity extends AppCompatActivity {
         //runT = false;
         startActivity(i);
         //finish();
+    }
+    public void onBackPressed(){
+        LoginActivity.status = 0;
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+        finish();
     }
     /*protected void onResume() {
         super.onResume();
